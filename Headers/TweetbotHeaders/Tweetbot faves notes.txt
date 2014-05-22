@@ -1,0 +1,59 @@
+https://api.twitter.com/1.1/statuses/468203235694497793/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true
+
+https://api.twitter.com/1.1/conversation/show.json?cards_platform=iPhone-7&contributor_details=1&count=20&id=468203235694497793&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true
+
+
+
+STEAL THEIR OAUTH TOKENS
+
+
+
+https://push.tapbots.com/tweetbot/3/statuses/favorites/467853928411836416.json?count=100 //Only works for users who use tweetbot, otherwise returns none
+
+PTHTweetbotStatusDetailStatusView
+
+PTHButton for faves/retweets buttons on tweet details view
+
+PTHButton faves touched:
+SEND ACTION: _showFavorites: to: <PTHTweetbotStatusDetailController: 0x14461dc90>
+
+PTHTweetbotStatusDetailController notes:
+_showWebPage: For bottom left button, shows tweet on mobile twitter (passes PTHButton as arg, all others do too)
+_showRetweets: obvious
+_showFavorites: shows faves in webpage or native list view
+
+
+If a tweet is sent from tweetbot (no matter what user), setting isCurrentUser to YES on a status shows the favorites correctly.
+
+
+
+
+Twitter app request header fields:
+
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Set value: en
+	For field: Accept-Language
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Set value: OAuth oauth_timestamp="1400520272", oauth_version="1.0", oauth_consumer_key="IQKbtAYlXLripLGPWd0HUA", oauth_signature="5nX6cFW0Ou53UhSqEuo3sP1E%2Fbw%3D", oauth_token="2266178594-z5IVgrwnOANicp5qX2O5yTgGsQ98MGs87n3QGxU", oauth_nonce="70B073B4-4746-4DF2-965C-4E131FE53273", oauth_signature_method="HMAC-SHA1"
+	For field: Authorization
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: 1400520219736;lat=42.3418057;lon=-85.7379261;hacc=4116.00;alt=268.73;vacc=30.71;src=I
+	For field: Geolocation
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: 6.5
+	For field: X-Twitter-Client-Version
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: Twitter-iPhone
+	For field: X-Twitter-Client
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: Twitter-iPhone/6.5 iOS/7.0.4 (Apple;iPhone6,1;;;;;1)
+	For field: User-Agent
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: 304E92DD-51B6-415F-A201-9421A475442F
+	For field: X-Twitter-Client-DeviceID
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: A833AFD1-23B5-420B-BFD4-E1210EE7CDD9
+	For field: X-Client-UUID
+NSMutableURLRequest: <NSMutableURLRequest: 0x16a4de20> { URL: https://api.twitter.com/1.1/statuses/468429688948662273/activity/summary.json?cards_platform=iPhone-7&contributor_details=1&include_cards=1&include_descendent_reply_count=true&include_entities=1&include_media_features=true&include_my_retweet=1&include_user_entities=true }
+	Add value: 5
+	For field: X-Twitter-API-Version

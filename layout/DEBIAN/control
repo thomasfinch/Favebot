@@ -1,0 +1,9 @@
+Package: com.thomasfinch.favebot
+Name: FaveBot
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: View favorites natively in Tweetbot
+Maintainer: Thomas Finch
+Author: Thomas Finch
+Section: Tweaks
