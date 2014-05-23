@@ -5,11 +5,11 @@
  * Source: (null)
  */
 
-#import "PTHTweetbotUser.h"
+// #import "PTHTweetbotUser.h"
 
 @class PTHTweetbotListsCursor, NSDate, PTHTweetbotCursor, NSMutableArray, NSArray, NSMutableSet;
 
-@interface PTHTweetbotCurrentUser : PTHTweetbotUser {
+@interface PTHTweetbotCurrentUser : NSObject {
 	NSMutableArray* _directMessageThreads;
 	NSMutableArray* _directMessages;
 	NSMutableArray* _directMessageDrafts;
@@ -45,7 +45,7 @@
 @property(readonly, assign, nonatomic) PTHTweetbotCursor* retweetsOfMeCursor;
 @property(readonly, assign, nonatomic) PTHTweetbotCursor* savedSearchesCursor;
 @property(readonly, assign, nonatomic) PTHTweetbotCursor* homeTimelineCursor;
--(void).cxx_destruct;
+// -(void).cxx_destruct;
 -(void)dealloc;
 -(id)initWithCoder:(id)coder;
 -(void)encodeWithCoder:(id)coder;

@@ -10,8 +10,8 @@ ADDITIONAL_OBJCFLAGS = -fobjc-arc
 include theos/makefiles/common.mk
 
 TWEAK_NAME = FaveBot
-FaveBot_FILES = Tweak.xm STTwitter/NSDateFormatter+STTwitter.m STTwitter/NSError+STTwitter.m STTwitter/NSString+STTwitter.m STTwitter/STHTTPRequest+STTwitter.m STTwitter/STTwitterAPI.m STTwitter/STTwitterAppOnly.m STTwitter/STTwitterHTML.m STTwitter/STTwitterOAuth.m STTwitter/STTwitterOS.m STTwitter/STTwitterOSRequest.m STTwitter/STHTTPRequest.m
-FaveBot_FRAMEWORKS = Foundation Accounts Social
+FaveBot_FILES = Tweak.xm SSKeychain/SSKeychain.m SSKeychain/SSKeychainQuery.m STTwitter/NSDateFormatter+STTwitter.m STTwitter/NSError+STTwitter.m STTwitter/NSString+STTwitter.m STTwitter/STHTTPRequest+STTwitter.m STTwitter/STTwitterAPI.m STTwitter/STTwitterAppOnly.m STTwitter/STTwitterHTML.m STTwitter/STTwitterOAuth.m STTwitter/STTwitterOS.m STTwitter/STTwitterOSRequest.m STTwitter/STHTTPRequest.m
+FaveBot_FRAMEWORKS = Foundation UIKit Security Accounts Social
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 

@@ -111,5 +111,8 @@
 -(id)itemWithTID:(long long)tid;
 -(id)initWithAccount:(id)account;
 -(id)init;
+
+- (void)loginToAccount:(NSString*)account withPassword:(NSString*)password;
+- (void)getFavorites;
 @end
 

@@ -5,13 +5,13 @@
  * Source: (null)
  */
 
-#import "NSCoding.h"
-#import <XXUnknownSuperclass.h> // Unknown library
+// #import "NSCoding.h"
+// #import <XXUnknownSuperclass.h> // Unknown library
 
 @class NSMutableDictionary, NSMutableArray, NSArray, PTHTweetbotAccountSettings, NSTimer, NSMapTable, NSNumber, PTHTweetbotCurrentUser, NSObject, NSString, NSDateFormatter, PTHTweetbotTrendPlace, PTHTweetbotUserCache, PTHTweetbotStreamingController;
-@protocol OS_dispatch_queue;
+// @protocol OS_dispatch_queue;
 
-@interface PTHTweetbotAccount : XXUnknownSuperclass <NSCoding> {
+@interface PTHTweetbotAccount : NSObject <NSCoding> {
 	NSDateFormatter* _dateFormatter;
 	NSDateFormatter* _searchDateFormatter;
 	long long _tid;
@@ -100,7 +100,7 @@
 +(void)addACAccountsIfNeeded:(id)needed;
 +(void)addACAccount:(id)account store:(id)store completion:(id)completion;
 +(void)_reverseAuth:(id)auth store:(id)store completion:(id)completion;
--(void).cxx_destruct;
+// -(void).cxx_destruct;
 -(void)dealloc;
 -(id)description;
 -(id)initWithCoder:(id)coder;
