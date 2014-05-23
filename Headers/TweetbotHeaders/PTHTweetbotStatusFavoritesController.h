@@ -11,7 +11,7 @@
 @class PTHTweetbotStatus;
 
 __attribute__((visibility("hidden")))
-@interface PTHTweetbotStatusFavoritesController : NSObject {
+@interface PTHTweetbotStatusFavoritesController : UIViewController {
 	PTHTweetbotStatus* _status;
 }
 // -(void).cxx_destruct;

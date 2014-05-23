@@ -5,14 +5,14 @@
  * Source: (null)
  */
 
-#import "Tweetbot-Structs.h"
-#import "UIScrollViewDelegate.h"
-#import <XXUnknownSuperclass.h> // Unknown library
+// #import "Tweetbot-Structs.h"
+// #import "UIScrollViewDelegate.h"
+// #import <XXUnknownSuperclass.h> // Unknown library
 
 @class PTHButton, UIScrollView, NSLayoutConstraint, UIView, PTHTweetbotStatusActionDrawerView, UIPageControl, NSArray, PTHTweetbotStatusView, PTHTweetbotStatus;
 
 __attribute__((visibility("hidden")))
-@interface PTHTweetbotStatusDetailController : XXUnknownSuperclass <UIScrollViewDelegate> {
+@interface PTHTweetbotStatusDetailController : UIViewController <UIScrollViewDelegate> {
 	PTHTweetbotStatus* _status;
 	NSArray* _conversationStatuses;
 	NSArray* _replyStatuses;
@@ -32,7 +32,7 @@ __attribute__((visibility("hidden")))
 	UIView* _topView;
 	NSLayoutConstraint* _scrollViewBottomConstraint;
 }
--(void).cxx_destruct;
+// -(void).cxx_destruct;
 -(void)dealloc;
 -(unsigned)supportedInterfaceOrientations;
 -(void)viewDidAppear:(BOOL)view;

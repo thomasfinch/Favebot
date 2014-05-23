@@ -3,6 +3,8 @@
 #import "STTwitter/STTwitter.h"
 #import "SSKeychain/SSKeychain.h"
 #import "Headers/TweetbotHeaders/PTHTweetbotCursor.h"
+#import "Headers/TweetbotHeaders/PTHTweetbotStatusFavoritesController.h"
+#import "Headers/TweetbotHeaders/PTHTweetbotStatusDetailController.h"
 #import "Credentials.h"
 
 NSMutableDictionary *twitterAPIs;
@@ -32,9 +34,13 @@ BOOL keychainInfoForAccount(NSString *account)
 
 %end
 
-%hook PTHTweetbotStatus
+%hook PTHTweetbotStatusDetailController
 
--(BOOL)isFromCurrentUser { return YES; }
+-(void)_showFavorites:(id)favorites
+{
+	UIViewController *favoritesController = [[objc_getClass("PTHTweetbotStatusFavoritesController") alloc] initWithStatus:MSHookIvar<id>(self, "_status")];
+	[self.navigationController pushViewController:favoritesController animated:YES];
+}
 
 %end
 
@@ -43,6 +49,7 @@ BOOL keychainInfoForAccount(NSString *account)
 -(void)sendRequest:(id)request type:(unsigned)type block:(id)requestBlock
 {
 	NSString *url = [MSHookIvar<NSURL*>(request, "_url") absoluteString];
+	NSLog(@"SEND REQUEST");
 
 	if ([url hasPrefix:@"https://push.tapbots.com/tweetbot/3/statuses/favorites/"])
 	{
@@ -87,7 +94,7 @@ BOOL keychainInfoForAccount(NSString *account)
     	[self getFavorites];
 
     } errorBlock:^(NSError *error) {
-    	NSLog(@"LOGIN FAILED WITH ERROR: %@",error);
+    	// NSLog(@"LOGIN FAILED WITH ERROR: %@",error);
 
     	UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Favbot Login" message:@"Login failed, please double check your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log In",nil];
 		loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
@@ -105,7 +112,7 @@ BOOL keychainInfoForAccount(NSString *account)
         [self handleResponse:[json objectForKey:@"favoriters"] type:1 block:nil];
 
     } errorBlock:^(NSError *error) {
-        NSLog(@"Failed with error: %@",error);
+        // NSLog(@"Failed with error: %@",error);
     }];
 }
 
