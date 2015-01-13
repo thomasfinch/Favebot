@@ -1,11 +1,9 @@
 ARCHS = armv7 arm64
-THEOS_DEVICE_IP = localhost
-THEOS_DEVICE_PORT = 2222
 THEOS_BUILD_DIR = debs
+ADDITIONAL_OBJCFLAGS = -fobjc-arc
 GO_EASY_ON_ME = 1
 
-TARGET_IPHONEOS_DEPLOYMENT_VERSION := 7.0
-ADDITIONAL_OBJCFLAGS = -fobjc-arc
+# PACKAGE_VERSION = 1.0
 
 include theos/makefiles/common.mk
 

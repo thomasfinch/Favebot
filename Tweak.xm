@@ -11,23 +11,20 @@ NSMutableDictionary *twitterAPIs;
 static NSString *currentAccount;
 static NSString *tweetID;
 
-BOOL keychainInfoForAccount(NSString *account)
-{
+BOOL keychainInfoForAccount(NSString *account) {
 	for (NSDictionary *acc in [SSKeychain accountsForService:@"com.thomasfinch.favebot"])
 		if ([[acc objectForKey:@"acct"] isEqualToString:account])
 			return YES;
 	return NO;
 }
 
-%ctor
-{
+%ctor {
 	twitterAPIs = [[NSMutableDictionary alloc] init];
 }
 
 %hook PTHTweetbotAccountController
 
--(id)initWithAccount:(id)account
-{
+-(id)initWithAccount:(id)account {
 	currentAccount = MSHookIvar<NSString*>(account, "_username");
 	return %orig;
 }
@@ -36,8 +33,7 @@ BOOL keychainInfoForAccount(NSString *account)
 
 %hook PTHTweetbotStatusDetailController
 
--(void)_showFavorites:(id)favorites
-{
+-(void)_showFavorites:(id)favorites {
 	UIViewController *favoritesController = [[objc_getClass("PTHTweetbotStatusFavoritesController") alloc] initWithStatus:MSHookIvar<id>(self, "_status")];
 	[self.navigationController pushViewController:favoritesController animated:YES];
 }
@@ -46,25 +42,21 @@ BOOL keychainInfoForAccount(NSString *account)
 
 %hook PTHTweetbotCursor
 
--(void)sendRequest:(id)request type:(unsigned)type block:(id)requestBlock
-{
+-(void)sendRequest:(id)request type:(unsigned)type block:(id)requestBlock {
 	NSString *url = [MSHookIvar<NSURL*>(request, "_url") absoluteString];
 	NSLog(@"SEND REQUEST");
 
-	if ([url hasPrefix:@"https://push.tapbots.com/tweetbot/3/statuses/favorites/"])
-	{
+	if ([url hasPrefix:@"https://push.tapbots.com/tweetbot/3/statuses/favorites/"]) {
 		tweetID = [url componentsSeparatedByString:@"/"][7];
 		tweetID = [tweetID substringToIndex:[tweetID length]-5];
 		
-		if (!keychainInfoForAccount(currentAccount)) //if no info for account
-		{
+		if (!keychainInfoForAccount(currentAccount)) { //if no info for account
 			UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Favbot Login" message:@"Please log in to your Twitter account." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log In",nil];
 			loginAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
 			[loginAlert textFieldAtIndex:0].text = currentAccount;
 			[loginAlert show];
 		}
-		else
-		{
+		else {
 			if (![twitterAPIs objectForKey:currentAccount]) //if current user is not logged in
 				[self loginToAccount:currentAccount withPassword:[SSKeychain passwordForService:@"com.thomasfinch.favebot" account:currentAccount]];
 			else
@@ -76,15 +68,13 @@ BOOL keychainInfoForAccount(NSString *account)
 }
 
 %new
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 1) //If log in button clicked
 		[self loginToAccount:currentAccount withPassword:[alertView textFieldAtIndex:1].text];
 }
 
 %new
-- (void)loginToAccount:(NSString*)account withPassword:(NSString*)password
-{
+- (void)loginToAccount:(NSString*)account withPassword:(NSString*)password {
 	STTwitterAPI *twitter = [STTwitterAPI twitterAPIWithOAuthConsumerKey:OAUTH_CONSUMER_KEY consumerSecret:OAUTH_CONSUMER_SECRET username:account password:password];
 
 	[twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
@@ -104,8 +94,7 @@ BOOL keychainInfoForAccount(NSString *account)
 }
 
 %new
-- (void)getFavorites
-{
+- (void)getFavorites {
 	NSString *requestURL = [NSString stringWithFormat:@"/1.1/statuses/%@/activity/summary.json",tweetID];
 	[[twitterAPIs objectForKey:currentAccount] getResource:requestURL baseURLString:@"https://api.twitter.com" parameters:nil downloadProgressBlock:nil successBlock:^(NSDictionary *rateLimits, id json) {
 
